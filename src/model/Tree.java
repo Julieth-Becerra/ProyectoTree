@@ -1,7 +1,14 @@
+/**
+ * Paquete modelo
+ */
 package model;
 
 import java.util.Comparator;
 
+/**
+ * Clase Tree
+ * @param <T> informacion
+ */
 public class Tree <T> {
     private Comparator<T> comparator;
     private Node<T> root;

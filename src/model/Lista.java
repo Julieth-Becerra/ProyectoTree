@@ -1,18 +1,44 @@
+/**
+ * Paquete modelo
+ */
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class List <T> {
+/**
+ * Clase lista circular
+ * @param <T> Informacion
+ */
+public class Lista<T> {
+
+    /**
+     * Nodo raiz
+     */
     private Node<T> root;
 
-    public List(){
+    /**
+     * Constructor de la clase donde se inicializa el atributo en null
+     */
+
+    public Lista(){
         this.root = null;
     }
+
+    /**
+     * Metodo que permite comprobar si la lista está vacia o no
+     * @return valor de verdad
+     */
 
     public boolean isEmpty(){
         return root == null;
     }
 
+    /**
+     * Metodo que permite ingresar informacion a la lista
+     * El metodo comprueba primero si la lista esta vacia
+     * @param info informacion a ingresar a la lista
+     */
     public void addList(T info){
         Node<T> data = new Node<>(info);
         if(isEmpty()){
@@ -30,7 +56,12 @@ public class List <T> {
         }
     }
 
-
+    /**
+     * Metodo que permite buscar un elemento en la lista
+     * Comprueba si la lista esta vacia
+     * @param info informacion a buscar
+     * @return nodo encontrado
+     */
     public Node<T> findNode(T info) {
         Node<T> aux = null;
         if (!isEmpty()){
@@ -50,6 +81,10 @@ public class List <T> {
         return aux;
     }
 
+    /**
+     * Metodo para saber el tamaño de la lista
+     * @return tamaño de la lista
+     */
     public int getSize(){
         int cont = 0;
         if(!isEmpty()){
@@ -63,6 +98,10 @@ public class List <T> {
         return cont;
     }
 
+    /**
+     * Metodo para borrar un elemento de la lista
+     * @param info informacion del nodo a eliminar
+     */
     public void delete(T info) {
         if (!isEmpty()) {
             Node<T> aux = root;
@@ -85,16 +124,22 @@ public class List <T> {
         }
     }
 
-    public List<Node<T>> recorrerDesdeNodo(Node<T> node){
+    /**
+     * Metodo que permite recorrer y mostrar la lista a partir de un nodo dado
+     * @param nodo apartir del que se recorre y muestra la lista
+     * @return lista a partir de un nodo
+     */
+    public List<Node<T>> recorrer(Node<T> nodo){
         List<Node<T>> nodos = null;
-        if (!isEmpty()) {
+        if (!isEmpty()){
             nodos = new ArrayList<>();
-            Node<T> aux = node.getRight();
-            while (aux != node){
+            Node<T> aux = nodo.getRight();
+            while (aux != nodo){
                 nodos.add(aux);
                 aux = aux.getRight();
             }
         }
         return nodos;
     }
+
 }
