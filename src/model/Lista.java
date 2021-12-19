@@ -60,7 +60,7 @@ public class Lista<T> {
      * Metodo que permite buscar un elemento en la lista
      * Comprueba si la lista esta vacia
      * @param info informacion a buscar
-     * @return nodo encontrado
+     * @return nodo encontrado o null si no se encuentra
      */
     public Node<T> findNode(T info) {
         Node<T> aux = null;
