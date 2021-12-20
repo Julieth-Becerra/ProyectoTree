@@ -52,10 +52,11 @@ public class Main {
                 case 4:
                     String id3 = JOptionPane.showInputDialog(null, "Ingrese id de la pelicula a partir de la cual se mostrara la lista");
                     String mostrar1 = "";
-                    for (Node<Movie> e:listado.recorrer(listado.findNode(new Movie(id3)))
+                    for (Node<Movie> e:listado.recorrerRaiz()
                     ) {
                         mostrar1+=e.getInfo()+"\n";
                     }
+                    mostrar1 ="";
                     JOptionPane.showMessageDialog(null, mostrar1);
                     break;
                 case 5:
@@ -73,9 +74,7 @@ public class Main {
                 default:
                     JOptionPane.showMessageDialog(null, "Opcion no valida");
             }
-
         }
-
     }
 
     public static void main (String[]args){

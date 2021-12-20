@@ -68,15 +68,15 @@ public class Lista<T> {
      * @param info informacion a buscar
      * @return nodo encontrado o null si no se encuentra
      */
-    public Node<T> findNode(T info) {
-        Node<T> aux = null;
+    public Node<Movie> findNode(Movie info) {
+        Node<Movie> aux = null;
         if (!isEmpty()){
             if(root.getInfo() == info){
-                return root;
+                return (Node<Movie>)root;
             }else{
-                aux = root.getRight();
+                aux = (Node<Movie>)root.getRight();
                 while (aux != root){
-                    if(aux.getInfo() == info){
+                    if(aux.getInfo().getId().equalsIgnoreCase(info.getId())){
                         return  aux;
                     }
                     aux = aux.getRight();
