@@ -38,12 +38,15 @@ public class Main {
                     movie = new Movie(id, name, duracion, director);
                     listado.addList(movie);
                     arbolinhio.addNode(movie);
+                    JOptionPane.showMessageDialog(null, "Se agrego correctamente la pelicula");
+
                     break;
                 case 2:
                     String id1 = JOptionPane.showInputDialog(null, "Ingrese id de la pelicula a eliminar");
                     listado.delete(new Movie(id1));
                     arbolinhio = new TreeBinary<>(((Id1, Id2) -> (Id1.getId().compareTo(Id2.getId()))));
                     listado.recorrerRaiz().forEach(e-> arbolinhio.addNode(e.getInfo()));
+                    JOptionPane.showMessageDialog(null, "Se elimino correctamente de la lista" );
                     break;
                 case 3:
                     String id2 = JOptionPane.showInputDialog(null, "Ingrese id de la pelicula a buscar");
