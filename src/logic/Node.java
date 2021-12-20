@@ -1,7 +1,7 @@
 /**
  * Paquete modelo
  */
-package model;
+package logic;
 
 /**
  * Clase del nodo
@@ -23,6 +23,10 @@ public class Node <T>{
     private Node<T> right;
 
     /**
+     * Altura del arbol
+     */
+    private int height;
+    /**
      * Constructor de la clase donde se inicializan los atributos
      * @param info infromacion
      */
@@ -30,6 +34,7 @@ public class Node <T>{
       this.info = info;
       this.left = null;
       this.right = null;
+      this.height = 0;
     }
 
     /**
@@ -78,5 +83,21 @@ public class Node <T>{
      */
     public void setRight(Node<T> right) {
         this.right = right;
+    }
+
+    /**
+     * Metodo para obtener la altura
+     * @return altura
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * Metodo para modificar la altura
+     * @param height altura a modificar
+     */
+    public void setHeight(int height) {
+        this.height = height;
     }
 }

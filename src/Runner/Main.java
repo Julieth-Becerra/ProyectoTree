@@ -1,10 +1,21 @@
+package Runner;
+
+import logic.Lista;
+import model.Movie;
+import logic.TreeBinary;
+
 import javax.swing.*;
 
 public class Main {
 
+
+    Lista<Movie> listado = new Lista<>();
+    TreeBinary<Movie> arbolinhio = new TreeBinary<>(((Id1, Id2) -> (Id1.getId().compareTo(Id2.getId()))));
     public void menu(){
 
         int opc = 0;
+
+        Movie movie = null;
 
         while(opc !=6){
 
@@ -23,7 +34,9 @@ public class Main {
                     String name = JOptionPane.showInputDialog(null, "Ingrese nombre de la pelicula");
                     String duracion = JOptionPane.showInputDialog(null, "Ingrese duracion de la pelicula");
                     String director = JOptionPane.showInputDialog(null, "Ingrese director de la pelicula");
-
+                    movie = new Movie(id, name, duracion, director);
+                    listado.addList(movie);
+                    arbolinhio.addNode(movie);
 
                     break;
                 case 2:

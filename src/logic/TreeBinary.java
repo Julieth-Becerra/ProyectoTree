@@ -1,7 +1,10 @@
 /**
  * Paquete modelo
  */
-package model;
+package logic;
+
+import logic.Node;
+import model.Movie;
 
 import java.util.Comparator;
 
@@ -9,7 +12,7 @@ import java.util.Comparator;
  * Clase Tree
  * @param <T> informacion
  */
-public class Tree <T> {
+public class TreeBinary <T> {
 
     /**
      * Comparator de la clase
@@ -28,7 +31,7 @@ public class Tree <T> {
      * Constructor donde se inicializa el comparator y la raiz
      * @param comparator comparator
      */
-    public Tree(Comparator<T> comparator) {
+    public TreeBinary(Comparator<T> comparator) {
         this.comparator = comparator;
         this.root = null;
     }
@@ -47,8 +50,7 @@ public class Tree <T> {
      * @param info informacion del nodo a ingresar
      */
 
-    public void addNode( T info ){
-        Node<T> node = new Node<>( info );
+    public void addNode( Node<T> node ){
         if( isEmpty()){
             root = node;
         }else{
@@ -56,7 +58,7 @@ public class Tree <T> {
             Node<T> ant = null;
             while( aux != null ){
                 ant = aux;
-                aux = comparator.compare(info, aux.getInfo() ) < 0 ? aux.getLeft() : aux.getRight();
+                aux = comparator.compare((Movie)node.getInfo().getId(), aux.getInfo() ) < 0 ? aux.getLeft() : aux.getRight();
             }
             if( comparator.compare(info,ant.getInfo()) < 0 ){
                 ant.setLeft( node );
@@ -108,5 +110,53 @@ public class Tree <T> {
             cont = i > cont ? i : cont;
             height( node.getRight(), i + 1 );
         }
+    }
+
+    private Node<T> rebalance(Node<T> node) {
+        updateHeight(node);
+        int balance = getBalance(node);
+        if (balance > 1) {
+            if (heightNode(node.getRight().getRight()) > heightNode(node.getRight().getLeft())) {
+                node = rotateLeft(node);
+            } else {
+                node.setRight(rotateRight(node.getRight()));
+                node = rotateLeft(node);
+            }
+        } else if (balance < -1) {
+            if (heightNode(node.getLeft().getLeft()) > heightNode(node.getLeft().getRight())) {
+                node = rotateRight(node);
+            } else {
+                node.setLeft(rotateLeft(node.getLeft()));
+                node = rotateRight(node);
+            }
+        }
+        return node;
+    }
+    public int getBalance(Node<T> node) {
+        return (node == null) ? 0 : heightNode(node.getRight()) - heightNode(node.getLeft());
+    }
+
+    private Node<T> rotateLeft(Node<T> y) {
+        Node<T> x = y.getRight();
+        Node<T> z = x.getLeft();
+        x.setLeft(y);
+        y.setRight(z);
+        updateHeight(y);
+        updateHeight(x);
+        return x;
+    }
+
+    private Node<T> rotateRight(Node<T> y) {
+        Node<T> x = y.getLeft();
+        Node<T> z = x.getRight();
+        x.setRight(y);
+        y.setLeft(z);
+        updateHeight(y);
+        updateHeight(x);
+        return x;
+    }
+
+    private void updateHeight(Node<T> node) {
+        node.setHeight(1 + Math.max(heightNode(node.getLeft()), heightNode(node.getRight())));
     }
 }

@@ -1,7 +1,11 @@
 /**
  * Paquete modelo
  */
-package model;
+package logic;
+
+import logic.Node;
+import logic.TreeBinary;
+import model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +20,8 @@ public class Lista<T> {
      * Nodo raiz
      */
     private Node<T> root;
+
+    TreeBinary<Movie> arbolinhio = new TreeBinary<>(((Id1, Id2) -> (Id1.getId().compareTo(Id2.getId()))));
 
     /**
      * Constructor de la clase donde se inicializa el atributo en null
@@ -54,6 +60,7 @@ public class Lista<T> {
             data.setRight(root);
             aux.setRight(data);
         }
+        arbolinhio.addNode((Node<Movie>) data);
     }
 
     /**

@@ -22,7 +22,7 @@ public class Movie {
     /**
      * Comparator de la clase
      */
-    private static final Comparator<Movie> compId = (((Id1, Id2) -> (Id1.getId().compareTo(Id2.getId()))) );
+    private static final Comparator<Movie> compId = (((Id1, Id2) -> (Id1.getId().compareTo(Id2.getId()))));
 
     /**
      * Constructor vacio de la clase
