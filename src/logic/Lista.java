@@ -60,7 +60,6 @@ public class Lista<T> {
             data.setRight(root);
             aux.setRight(data);
         }
-        arbolinhio.addNode((Node<Movie>) data);
     }
 
     /**
@@ -131,6 +130,9 @@ public class Lista<T> {
         }
     }
 
+    public  List<Node<T>> recorrerRaiz(){
+        return recorrer(root);
+    }
     /**
      * Metodo que permite recorrer y mostrar la lista a partir de un nodo dado
      * @param nodo apartir del que se recorre y muestra la lista
@@ -141,6 +143,7 @@ public class Lista<T> {
         if (!isEmpty()){
             nodos = new ArrayList<>();
             Node<T> aux = nodo.getRight();
+            nodos.add(nodo);
             while (aux != nodo){
                 nodos.add(aux);
                 aux = aux.getRight();

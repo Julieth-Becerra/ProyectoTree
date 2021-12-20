@@ -1,6 +1,7 @@
 package Runner;
 
 import logic.Lista;
+import logic.Node;
 import model.Movie;
 import logic.TreeBinary;
 
@@ -37,20 +38,33 @@ public class Main {
                     movie = new Movie(id, name, duracion, director);
                     listado.addList(movie);
                     arbolinhio.addNode(movie);
-
                     break;
                 case 2:
                     String id1 = JOptionPane.showInputDialog(null, "Ingrese id de la pelicula a eliminar");
+                    listado.delete(new Movie(id1));
+                    arbolinhio = new TreeBinary<>(((Id1, Id2) -> (Id1.getId().compareTo(Id2.getId()))));
+                    listado.recorrerRaiz().forEach(e-> arbolinhio.addNode(e.getInfo()));
                     break;
                 case 3:
                     String id2 = JOptionPane.showInputDialog(null, "Ingrese id de la pelicula a buscar");
+                    JOptionPane.showMessageDialog(null, arbolinhio.findNode(new Movie(id2)).getInfo());
                     break;
-
                 case 4:
-
+                    String id3 = JOptionPane.showInputDialog(null, "Ingrese id de la pelicula a partir de la cual se mostrara la lista");
+                    String mostrar1 = "";
+                    for (Node<Movie> e:listado.recorrer(listado.findNode(new Movie(id3)))
+                    ) {
+                        mostrar1+=e.getInfo()+"\n";
+                    }
+                    JOptionPane.showMessageDialog(null, mostrar1);
                     break;
                 case 5:
-
+                    String mostrar = "";
+                    for (Node<Movie> e:listado.recorrerRaiz()
+                         ) {
+                        mostrar+=e.getInfo()+"\n";
+                    }
+                    JOptionPane.showMessageDialog(null, mostrar);
                     break;
                 case 6:
                     JOptionPane.showMessageDialog(null, "Thanks, bye :)");

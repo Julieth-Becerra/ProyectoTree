@@ -29,6 +29,10 @@ public class Movie {
      */
     public Movie (){}
 
+    public Movie (String id){
+        this.id = id;
+    }
+
     /**
      * Constructor de la clase donde se inicializan los atributos
      * @param id Id de la pelicula

@@ -4,7 +4,6 @@
 package logic;
 
 import logic.Node;
-import model.Movie;
 
 import java.util.Comparator;
 
@@ -50,7 +49,8 @@ public class TreeBinary <T> {
      * @param info informacion del nodo a ingresar
      */
 
-    public void addNode( Node<T> node ){
+    public void addNode( T info ){
+        Node<T> node = new Node<>( info );
         if( isEmpty()){
             root = node;
         }else{
@@ -58,7 +58,7 @@ public class TreeBinary <T> {
             Node<T> ant = null;
             while( aux != null ){
                 ant = aux;
-                aux = comparator.compare((Movie)node.getInfo().getId(), aux.getInfo() ) < 0 ? aux.getLeft() : aux.getRight();
+                aux = comparator.compare(info, aux.getInfo() ) < 0 ? aux.getLeft() : aux.getRight();
             }
             if( comparator.compare(info,ant.getInfo()) < 0 ){
                 ant.setLeft( node );
@@ -66,6 +66,10 @@ public class TreeBinary <T> {
                 ant.setRight( node );
             }
         }
+    }
+
+    public Node<T> getRoot(){
+        return root;
     }
 
     /**
