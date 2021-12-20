@@ -29,6 +29,10 @@ public class Movie {
      */
     public Movie (){}
 
+    /**
+     * Constructor que permite inicializar el id de la pelicula
+     * @param id id de la pelicula
+     */
     public Movie (String id){
         this.id = id;
     }

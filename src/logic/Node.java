@@ -1,6 +1,7 @@
 /**
- * Paquete modelo
+ * Paquete logica
  */
+
 package logic;
 
 /**

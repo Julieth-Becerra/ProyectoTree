@@ -1,6 +1,8 @@
+
 /**
- * Paquete modelo
+ * Paquete logica
  */
+
 package logic;
 
 import logic.Node;
@@ -20,6 +22,10 @@ public class Lista<T> {
      * Nodo raiz
      */
     private Node<T> root;
+
+    /**
+     * Arbol de tipo pelicula
+     */
 
     TreeBinary<Movie> arbolinhio = new TreeBinary<>(((Id1, Id2) -> (Id1.getId().compareTo(Id2.getId()))));
 
@@ -111,16 +117,18 @@ public class Lista<T> {
     public void delete(T info) {
         if (!isEmpty()) {
             Node<T> aux = root;
-            if (root.getInfo() == info) {
-                while
-                (aux.getRight() != root) {
+            if((root == root.getRight())){
+                root.setRight(null);
+                root = null;
+            } else if (((Node<Movie>) root).getInfo().getId().equalsIgnoreCase(((Movie) info).getId())) {
+                while (!((Node<Movie>) aux.getRight()).getInfo().getId().equalsIgnoreCase(((Node<Movie>) root).getInfo().getId())) {
                     aux = aux.getRight();
                 }
                 root = root.getRight();
                 aux.setRight(aux.getRight().getRight());
             } else {
-                while (aux.getRight() != root) {
-                    if (aux.getRight().getInfo() == info) {
+                while (!(((Node<Movie>) aux).getRight().getInfo().getId()).equalsIgnoreCase(((Node<Movie>) root).getInfo().getId())) {
+                    if (((Node<Movie>) aux.getRight()).getInfo().getId().equalsIgnoreCase(((Movie) info).getId())) {
                         aux.setRight(aux.getRight().getRight());
                         break;
                     }
@@ -130,6 +138,10 @@ public class Lista<T> {
         }
     }
 
+    /**
+     * Metodo que permite recorrer la lista desde raiz
+     * @return raiz
+     */
     public  List<Node<T>> recorrerRaiz(){
         return recorrer(root);
     }
@@ -150,6 +162,14 @@ public class Lista<T> {
             }
         }
         return nodos;
+    }
+
+    /**
+     * Metodo para obtener la raiz
+     * @return raiz
+     */
+    public Node<T> getRoot() {
+        return root;
     }
 
 }

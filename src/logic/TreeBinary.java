@@ -1,5 +1,5 @@
 /**
- * Paquete modelo
+ * Paquete logica
  */
 package logic;
 
@@ -68,6 +68,10 @@ public class TreeBinary <T> {
         }
     }
 
+    /**
+     * Metodo que permite obtener la raiz del arbol
+     * @return raiz del arbol
+     */
     public Node<T> getRoot(){
         return root;
     }
@@ -116,6 +120,12 @@ public class TreeBinary <T> {
         }
     }
 
+    /**
+     * Metodo que permite rebalcear el arbol
+     * @param node nodo
+     * @return nodo
+     */
+
     private Node<T> rebalance(Node<T> node) {
         updateHeight(node);
         int balance = getBalance(node);
@@ -136,10 +146,21 @@ public class TreeBinary <T> {
         }
         return node;
     }
+
+    /**
+     * Metodo que permite obtener el balanceo del arbol
+     * @param node node
+     * @return arbol balanceado
+     */
     public int getBalance(Node<T> node) {
         return (node == null) ? 0 : heightNode(node.getRight()) - heightNode(node.getLeft());
     }
 
+    /**
+     * Metodo para rotar a la izquierda el arbol
+     * @param y nodo
+     * @return arbol rotado a la izquierda
+     */
     private Node<T> rotateLeft(Node<T> y) {
         Node<T> x = y.getRight();
         Node<T> z = x.getLeft();
@@ -150,6 +171,11 @@ public class TreeBinary <T> {
         return x;
     }
 
+    /**
+     * Metodo para rotar a la derecha el arbol
+     * @param y nodo
+     * @return arbol rotado a la derecha
+     */
     private Node<T> rotateRight(Node<T> y) {
         Node<T> x = y.getLeft();
         Node<T> z = x.getRight();
@@ -160,6 +186,10 @@ public class TreeBinary <T> {
         return x;
     }
 
+    /**
+     * Metodo que permite actualizar la altura del arbol
+     * @param node nodo
+     */
     private void updateHeight(Node<T> node) {
         node.setHeight(1 + Math.max(heightNode(node.getLeft()), heightNode(node.getRight())));
     }
